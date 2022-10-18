@@ -18,7 +18,7 @@ const AssetPage = ({ state, dispatch }) => {
                 dispatch({ type: actions.SHOW_ASSET_FORM, payload: true })
               }
             >
-              Request
+              Add Asset
             </Button>
           </Row>
           <Row>
@@ -35,14 +35,29 @@ const AssetPage = ({ state, dispatch }) => {
                   { dataField: "name", text: "Name" },
                   { dataField: "description", text: "Description" },
                   { dataField: "assignee", text: "Assignee" },
+                  { dataField: "tracker_no", text: "Tracker No" },
                   { dataField: "status", text: "Status" },
                   {
-                    dataField: "location",
-                    text: "Location",
-                    formatter: () => {
+                    dataField: "_",
+                    text: "Actions",
+                    formatter: (cell, row) => {
                       return (
                         <>
-                          <Button color="info">View</Button>
+                          <Button
+                            color="warning"
+                            style={{ width: 80 }}
+                            onClick={() =>
+                              dispatch({
+                                type: actions.EDIT_ASSET,
+                                payload: row,
+                              })
+                            }
+                          >
+                            Update
+                          </Button>
+                          <Button color="info" style={{ width: 80 }}>
+                            {row.type === "Vehicle" ? "Track" : "View"}
+                          </Button>
                         </>
                       );
                     },

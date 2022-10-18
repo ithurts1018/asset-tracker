@@ -3,7 +3,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import { Button, Col, Container, Row } from "reactstrap";
 import { actions } from "../reducer";
 
-const AssigneePage = ({ state, dispatch }) => {
+const LocationPage = ({ state, dispatch }) => {
   return (
     <>
       <div style={{ height: 120 }}></div>
@@ -26,13 +26,11 @@ const AssigneePage = ({ state, dispatch }) => {
                 bootstrap4
                 condensed
                 keyField="id"
-                data={state.assignees}
+                data={state.locations}
                 columns={[
-                  { dataField: "assignee_id", text: "Assignee ID" },
-                  { dataField: "employee_id", text: "Employee ID" },
-                  { dataField: "name", text: "Name" },
-                  { dataField: "description", text: "Description" },
-                  { dataField: "status", text: "Status" },
+                  { dataField: "location_id", text: "Location ID" },
+                  { dataField: "location_name", text: "Name" },
+                  { dataField: "location_description", text: "Description" },
                   {
                     dataField: "location",
                     text: "Location",
@@ -54,4 +52,4 @@ const AssigneePage = ({ state, dispatch }) => {
   );
 };
 
-export default AssigneePage;
+export default LocationPage;
