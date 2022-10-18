@@ -1,0 +1,47 @@
+export default {
+  assetIdCount: 2,
+  assigneeIdCount: 2,
+  assets: [
+    {
+      asset_id: 1,
+      name: "PC",
+      description: "i3",
+      type: "Machine",
+      serial: "Machine-1",
+      assignee: "John Doe",
+      status: "RECEIVED",
+      location: [10, 10],
+    },
+    {
+      asset_id: 2,
+      name: "SUV",
+      description: "Ertiga",
+      type: "Vehicle",
+      serial: "Vehicle-2",
+      assignee: "Jane Doe",
+      status: "PENDING",
+      location: [10, 10],
+    },
+  ],
+  assetTypes: ["Machine", "Vehicle", "Other"],
+  showAssetForm: false,
+  assignees: [
+    {
+      assignee_id: 1,
+      employee_id: "EMP-1",
+      name: "John Doe",
+      description: "Chief",
+      status: "ACTIVE",
+      location: [10, 10],
+    },
+    {
+      assignee_id: 2,
+      employee_id: "EMP-2",
+      name: "Jane Doe",
+      description: "Private",
+      status: "INACTIVE",
+      location: [10, 10],
+    },
+  ],
+  assigneeStatus: ["ACTIVE", "INACTIVE"],
+};
