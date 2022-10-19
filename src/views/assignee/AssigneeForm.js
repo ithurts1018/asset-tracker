@@ -43,25 +43,28 @@ const AssigneeForm = ({ state, dispatch }) => {
           <Label>Description</Label>
           <Input onChange={({ target }) => setDescription(target.value)} />
         </FormGroup>
-        <Dropdown
-          direction="right"
-          isOpen={showDropdown}
-          toggle={() => setShowDropdown((prevState) => !prevState)}
-        >
-          <DropdownToggle caret color="" className="border">
-            {selectedStatus ? selectedStatus : "Select"}{" "}
-          </DropdownToggle>
-          <DropdownMenu>
-            {state.assigneeStatuses.map((assigneeStatuse, index) => (
-              <DropdownItem
-                key={index}
-                onClick={() => setSelectedStatus(assigneeStatuse)}
-              >
-                {assigneeStatuse}
-              </DropdownItem>
-            ))}
-          </DropdownMenu>
-        </Dropdown>
+        <FormGroup>
+          <Label>Status</Label>
+          <Dropdown
+            direction="right"
+            isOpen={showDropdown}
+            toggle={() => setShowDropdown((prevState) => !prevState)}
+          >
+            <DropdownToggle caret color="" className="border">
+              {selectedStatus ? selectedStatus : "Select"}{" "}
+            </DropdownToggle>
+            <DropdownMenu>
+              {state.assigneeStatuses.map((assigneeStatuse, index) => (
+                <DropdownItem
+                  key={index}
+                  onClick={() => setSelectedStatus(assigneeStatuse)}
+                >
+                  {assigneeStatuse}
+                </DropdownItem>
+              ))}
+            </DropdownMenu>
+          </Dropdown>
+        </FormGroup>
       </ModalBody>
       <ModalFooter>
         <Button color="success" onClick={handleAddButton}>

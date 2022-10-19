@@ -11,20 +11,16 @@ import {
   Label,
   Modal,
 } from "reactstrap";
+import trackLabsLogo from "../../images/TrackLabsLoginLogo.png";
 
 const LoginPage = () => {
   return (
     <Modal size="md" isOpen={true} modalClassName="bg-dark">
       <Card>
-        <CardHeader>
-          <h3 className="text-center">TrackLabs</h3>
-        </CardHeader>
         <CardBody>
-          <img
-            style={{ width: "100%", height: 150, borderRadius: 5 }}
-            className="mb-4"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1024px-Image_created_with_a_mobile_phone.png"
-          />
+          <div className="text-center my-2">
+            <img src={trackLabsLogo} style={{ width: "70%" }} alt="logo" />
+          </div>
           <FormGroup>
             <Label>Username</Label>
             <Input defaultValue="admin" />
@@ -33,12 +29,12 @@ const LoginPage = () => {
             <Label>Password</Label>
             <Input type="password" defaultValue="password" />
           </FormGroup>
+          <div className="d-flex justify-content-center mt-4 mb-2">
+            <Link to="/asset" className="btn btn-success w-50">
+              Login
+            </Link>
+          </div>
         </CardBody>
-        <CardFooter className="d-flex justify-content-center">
-          <Link to="/asset" className="btn btn-success w-50">
-            Login
-          </Link>
-        </CardFooter>
       </Card>
     </Modal>
   );

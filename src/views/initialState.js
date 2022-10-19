@@ -121,6 +121,7 @@ const initialState = {
   mapLocation: [],
   showQR: false,
   qrData: "",
+  showLocationForm: false,
 };
 
 export default initialState;

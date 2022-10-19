@@ -37,7 +37,7 @@ const LocationPage = ({ state, dispatch }) => {
                         color="info"
                         onClick={() =>
                           dispatch({
-                            type: actions.TRACK_ASSET,
+                            type: actions.TRACK_LOCATION,
                             payload: row.location,
                           })
                         }
@@ -62,7 +62,7 @@ const LocationPage = ({ state, dispatch }) => {
                       className="ml-3"
                       onClick={() =>
                         dispatch({
-                          type: actions.SHOW_ASSIGNEE_FORM,
+                          type: actions.SHOW_LOCATION_FORM,
                           payload: true,
                         })
                       }

@@ -43,7 +43,7 @@ const AssigneePage = ({ state, dispatch }) => {
                         color="info"
                         onClick={() =>
                           dispatch({
-                            type: actions.TRACK_ASSET,
+                            type: actions.TRACK_LOCATION,
                             payload: row.location,
                           })
                         }

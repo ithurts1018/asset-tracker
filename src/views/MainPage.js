@@ -6,6 +6,7 @@ import AssetTransferForm from "./asset/AssetTransferForm";
 import AssigneeForm from "./assignee/AssigneeForm";
 import AssigneePage from "./assignee/AssigneePage";
 import initialState from "./initialState";
+import LocationForm from "./location/LocationForm";
 import LocationPage from "./location/LocationPage";
 import LoginPage from "./login/LoginPage";
 import MapModal from "./map/MapModal";
@@ -51,7 +52,12 @@ const Main = (props) => {
         <Route
           path="/location"
           name="Location Page"
-          element={<LocationPage state={state} dispatch={dispatch} />}
+          element={
+            <>
+              <LocationPage state={state} dispatch={dispatch} />
+              <LocationForm state={state} dispatch={dispatch} />
+            </>
+          }
         />
       </Routes>
       <MapModal state={state} dispatch={dispatch} />

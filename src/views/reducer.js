@@ -8,9 +8,11 @@ export const actions = {
   SHOW_ASSET_TRANSFER_FORM: "SHOW_ASSET_TRANSFER_FORM",
   TRANSFER_ASSET: "TRANSFER_ASSET",
   RECEIVE_ASSET: "RECEIVE_ASSET",
-  TRACK_ASSET: "TRACK_ASSET",
+  TRACK_LOCATION: "TRACK_LOCATION",
   SHOW_MAP: "SHOW_MAP",
   SHOW_QR: "SHOW_QR",
+  SHOW_LOCATION_FORM: "",
+  ADD_LOCATION: "ADD_LOCATION",
 };
 
 export const reducer = (state, { type, payload }) => {
@@ -20,14 +22,16 @@ export const reducer = (state, { type, payload }) => {
     case actions.SHOW_ASSIGNEE_FORM:
       return { ...state, showAssigneeForm: payload };
     case actions.ADD_ASSET:
-      payload.asset_id = state.assetIdCount;
-      payload.serial = `${payload.type}-${state.assetIdCount}`;
+      const assetIdCount = state.assetIdCount++;
+      payload.asset_id = assetIdCount;
+      payload.serial = `${payload.type}-${assetIdCount}`;
       payload.status = "PENDING";
+      payload.location = [4, 4];
       return {
         ...state,
         asset: {},
         assets: [...state.assets, payload],
-        idCount: state.assetIdCount++,
+        assetIdCount,
         showAssetForm: false,
       };
     case actions.EDIT_ASSET:
@@ -38,7 +42,6 @@ export const reducer = (state, { type, payload }) => {
         action: actions.EDIT_ASSET,
       };
     case actions.UPDATE_ASSET:
-      console.log(payload);
       return {
         ...state,
         assets: state.assets.map((asset) => {
@@ -52,12 +55,15 @@ export const reducer = (state, { type, payload }) => {
         action: actions.EDIT_ASSET,
       };
     case actions.ADD_ASSIGNEE:
-      payload.assignee_id = state.assigneeIdCount;
-      payload.employee_id = `EMP-${state.assigneeIdCount}`;
+      const assigneeIdCount = state.assigneeIdCount++;
+
+      payload.assignee_id = assigneeIdCount;
+      payload.employee_id = `EMP-${assigneeIdCount}`;
+      payload.location = [3, 3];
       return {
         ...state,
         assignees: [...state.assignees, payload],
-        assigneeIdCount: state.assigneeIdCount++,
+        assigneeIdCount,
         showAssigneeForm: false,
       };
     case actions.SHOW_ASSET_TRANSFER_FORM:
@@ -72,7 +78,6 @@ export const reducer = (state, { type, payload }) => {
             asset.target_location = payload.location.location;
             asset.status = "TRANSFER REQUEST PENDING";
           }
-          console.log(asset);
           return asset;
         }),
         showAssetTransferForm: false,
@@ -86,16 +91,27 @@ export const reducer = (state, { type, payload }) => {
             asset.target_location = [];
             asset.status = "ACTIVE";
           }
-          console.log(asset);
           return asset;
         }),
       };
-    case actions.TRACK_ASSET:
+    case actions.TRACK_LOCATION:
       return { ...state, mapLocation: payload, showMap: true };
     case actions.SHOW_MAP:
       return { ...state, showMap: payload };
     case actions.SHOW_QR:
       return { ...state, showQR: payload.show, qrData: payload.data };
+    case actions.SHOW_LOCATION_FORM:
+      return { ...state, showLocationForm: payload };
+    case actions.ADD_LOCATION:
+      const locationIdCount = state.locationIdCount++;
+      payload.location_id = locationIdCount;
+      payload.location = [7, 7];
+      return {
+        ...state,
+        locationIdCount,
+        locations: [...state.locations, payload],
+        showLocationForm: false,
+      };
     default:
       return state;
   }
