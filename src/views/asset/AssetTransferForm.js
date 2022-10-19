@@ -36,6 +36,7 @@ const AssetTransferForm = ({ state, dispatch }) => {
     <Modal size="lg" isOpen={state.showAssetTransferForm}>
       <ModalHeader>Transfer Request</ModalHeader>
       <ModalBody>
+        <Label>Assets</Label>
         <Row className="px-3">
           {state.assets.map((asset, index) => (
             <Col xs="4" key={index}>

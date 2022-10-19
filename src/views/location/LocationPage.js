@@ -30,10 +30,20 @@ const LocationPage = ({ state, dispatch }) => {
               {
                 dataField: "",
                 text: "Actions",
-                formatter: () => {
+                formatter: (cell, row) => {
                   return (
                     <>
-                      <Button color="info">View</Button>
+                      <Button
+                        color="info"
+                        onClick={() =>
+                          dispatch({
+                            type: actions.TRACK_ASSET,
+                            payload: row.location,
+                          })
+                        }
+                      >
+                        Track
+                      </Button>
                     </>
                   );
                 },
