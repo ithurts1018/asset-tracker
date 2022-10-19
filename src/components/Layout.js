@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
+import { Sidebar } from "react-pro-sidebar";
 import { NavLink } from "react-router-dom";
 import trackLabsLogo from "../images/TrackLabs.png";
 
@@ -14,7 +13,7 @@ const Layout = () => {
     >
       <Sidebar>
         <div>
-          <img src={trackLabsLogo} style={{ width: 200 }} />
+          <img src={trackLabsLogo} style={{ width: 200 }} alt="logo" />
           <NavLink
             to="/asset"
             className="btn px-4 my-2"

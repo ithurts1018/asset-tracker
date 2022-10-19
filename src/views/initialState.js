@@ -1,4 +1,4 @@
-export default {
+const initialState = {
   isLoggedIn: false,
   assetIdCount: 6,
   assigneeIdCount: 2,
@@ -15,6 +15,7 @@ export default {
       tracker_no: "ABC103-400400-1",
       status: "ACTIVE",
       location: [10, 10],
+      target_location: [],
     },
     {
       asset_id: 2,
@@ -26,6 +27,7 @@ export default {
       tracker_no: "ABC103-400400-2",
       status: "ACTIVE",
       location: [10, 10],
+      target_location: [],
     },
     {
       asset_id: 3,
@@ -37,6 +39,7 @@ export default {
       tracker_no: "ABC103-400400-3",
       status: "ACTIVE",
       location: [10, 10],
+      target_location: [],
     },
     {
       asset_id: 4,
@@ -48,6 +51,7 @@ export default {
       tracker_no: "ABC103-400400-4",
       status: "ACTIVE",
       location: [10, 10],
+      target_location: [],
     },
     {
       asset_id: 5,
@@ -59,6 +63,7 @@ export default {
       tracker_no: "ABC103-400400-5",
       status: "ACTIVE",
       location: [10, 10],
+      target_location: [],
     },
     {
       asset_id: 6,
@@ -70,6 +75,7 @@ export default {
       tracker_no: "ABC103-400400-6",
       status: "ACTIVE",
       location: [10, 10],
+      target_location: [],
     },
   ],
   assetTypes: ["Machine", "Vehicle", "Other"],
@@ -95,5 +101,26 @@ export default {
   ],
   assigneeStatuses: ["ACTIVE", "INACTIVE"],
   showAssigneeForm: false,
-  locations: [],
+  locationIdCount: 2,
+  locations: [
+    {
+      location_id: 1,
+      name: "Station 1",
+      description: "Taguig",
+      location: [22, 22],
+    },
+    {
+      location_id: 2,
+      name: "Station 33",
+      description: "Quezon City",
+      location: [33, 33],
+    },
+  ],
+  showAssetTransferForm: false,
+  showMap: false,
+  mapLocation: [],
+  showQR: false,
+  qrData: "",
 };
+
+export default initialState;

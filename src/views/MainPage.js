@@ -2,11 +2,14 @@ import React, { useReducer } from "react";
 import { Route, Routes } from "react-router-dom";
 import AssetForm from "./asset/AssetForm";
 import AssetPage from "./asset/AssetPage";
+import AssetTransferForm from "./asset/AssetTransferForm";
 import AssigneeForm from "./assignee/AssigneeForm";
 import AssigneePage from "./assignee/AssigneePage";
 import initialState from "./initialState";
 import LocationPage from "./location/LocationPage";
 import LoginPage from "./login/LoginPage";
+import MapModal from "./map/MapModal";
+import QRModal from "./qr/QRModal";
 import { reducer } from "./reducer";
 
 const Main = (props) => {
@@ -31,6 +34,7 @@ const Main = (props) => {
             <>
               <AssetPage state={state} dispatch={dispatch} />
               <AssetForm state={state} dispatch={dispatch} />
+              <AssetTransferForm state={state} dispatch={dispatch} />
             </>
           }
         />
@@ -50,6 +54,8 @@ const Main = (props) => {
           element={<LocationPage state={state} dispatch={dispatch} />}
         />
       </Routes>
+      <MapModal state={state} dispatch={dispatch} />
+      <QRModal state={state} dispatch={dispatch} />
     </>
   );
 };

@@ -2,6 +2,9 @@ import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import { Button, Col, Container, Row } from "reactstrap";
 import { actions } from "../reducer";
+import ToolkitProvider, {
+  Search,
+} from "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit";
 
 const AssigneePage = ({ state, dispatch }) => {
   return (
@@ -9,45 +12,72 @@ const AssigneePage = ({ state, dispatch }) => {
       <div style={{ height: 120 }}></div>
       <div>
         <Container>
-          <Row>
-            <Button
-              color="primary border"
-              className="ml-3"
-              onClick={() =>
-                dispatch({ type: actions.SHOW_ASSIGNEE_FORM, payload: true })
-              }
-            >
-              Add
-            </Button>
-          </Row>
-          <Row>
-            <Col sm="12" className="mt-3">
-              <BootstrapTable
-                bootstrap4
-                condensed
-                keyField="id"
-                data={state.assignees}
-                columns={[
-                  { dataField: "assignee_id", text: "Assignee ID" },
-                  { dataField: "employee_id", text: "Employee ID" },
-                  { dataField: "name", text: "Name" },
-                  { dataField: "description", text: "Description" },
-                  { dataField: "status", text: "Status" },
-                  {
-                    dataField: "location",
-                    text: "Location",
-                    formatter: () => {
-                      return (
-                        <>
-                          <Button color="info">View</Button>
-                        </>
-                      );
-                    },
-                  },
-                ]}
-              />
-            </Col>
-          </Row>
+          <ToolkitProvider
+            keyField="id"
+            data={state.assignees}
+            columns={[
+              {
+                dataField: "assignee_id",
+                text: "Assignee ID",
+                searchable: true,
+              },
+              {
+                dataField: "employee_id",
+                text: "Employee ID",
+                searchable: true,
+              },
+              { dataField: "name", text: "Name", searchable: true },
+              {
+                dataField: "description",
+                text: "Description",
+                searchable: true,
+              },
+              { dataField: "status", text: "Status" },
+              {
+                dataField: "",
+                text: "Actions",
+                formatter: () => {
+                  return (
+                    <>
+                      <Button color="info">View</Button>
+                    </>
+                  );
+                },
+              },
+            ]}
+            search={{
+              searchFormatted: true,
+            }}
+          >
+            {({ baseProps, searchProps }) => (
+              <>
+                <Row className="justify-content-between">
+                  <div>
+                    <Button
+                      color="primary border"
+                      className="ml-3"
+                      onClick={() =>
+                        dispatch({
+                          type: actions.SHOW_ASSIGNEE_FORM,
+                          payload: true,
+                        })
+                      }
+                    >
+                      Add Assignee
+                    </Button>
+                  </div>
+                  <div className="mr-3">
+                    <Search.SearchBar {...searchProps} />
+                  </div>
+                </Row>
+                <Row>
+                  <Col sm="12" className="mt-3">
+                    <BootstrapTable {...baseProps} bootstrap4 condensed />
+                  </Col>
+                </Row>
+              </>
+            )}
+          </ToolkitProvider>
         </Container>
       </div>
     </>

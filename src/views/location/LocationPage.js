@@ -2,6 +2,9 @@ import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import { Button, Col, Container, Row } from "reactstrap";
 import { actions } from "../reducer";
+import ToolkitProvider, {
+  Search,
+} from "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit";
 
 const LocationPage = ({ state, dispatch }) => {
   return (
@@ -9,43 +12,66 @@ const LocationPage = ({ state, dispatch }) => {
       <div style={{ height: 120 }}></div>
       <div>
         <Container>
-          <Row>
-            <Button
-              color="primary border"
-              className="ml-3"
-              onClick={() =>
-                dispatch({ type: actions.SHOW_ASSIGNEE_FORM, payload: true })
-              }
-            >
-              Add
-            </Button>
-          </Row>
-          <Row>
-            <Col sm="12" className="mt-3">
-              <BootstrapTable
-                bootstrap4
-                condensed
-                keyField="id"
-                data={state.locations}
-                columns={[
-                  { dataField: "location_id", text: "Location ID" },
-                  { dataField: "location_name", text: "Name" },
-                  { dataField: "location_description", text: "Description" },
-                  {
-                    dataField: "location",
-                    text: "Location",
-                    formatter: () => {
-                      return (
-                        <>
-                          <Button color="info">View</Button>
-                        </>
-                      );
-                    },
-                  },
-                ]}
-              />
-            </Col>
-          </Row>
+          <ToolkitProvider
+            keyField="id"
+            data={state.locations}
+            columns={[
+              {
+                dataField: "location_id",
+                text: "Location ID",
+                searchable: true,
+              },
+              { dataField: "name", text: "Name", searchable: true },
+              {
+                dataField: "description",
+                text: "Description",
+                searchable: true,
+              },
+              {
+                dataField: "",
+                text: "Actions",
+                formatter: () => {
+                  return (
+                    <>
+                      <Button color="info">View</Button>
+                    </>
+                  );
+                },
+              },
+            ]}
+            search={{
+              searchFormatted: true,
+            }}
+          >
+            {({ baseProps, searchProps }) => (
+              <>
+                <Row className="justify-content-between">
+                  <div>
+                    <Button
+                      color="primary border"
+                      className="ml-3"
+                      onClick={() =>
+                        dispatch({
+                          type: actions.SHOW_ASSIGNEE_FORM,
+                          payload: true,
+                        })
+                      }
+                    >
+                      Add Location
+                    </Button>
+                  </div>
+                  <div className="mr-3">
+                    <Search.SearchBar {...searchProps} />
+                  </div>
+                </Row>
+                <Row>
+                  <Col sm="12" className="mt-3">
+                    <BootstrapTable {...baseProps} bootstrap4 condensed />
+                  </Col>
+                </Row>
+              </>
+            )}
+          </ToolkitProvider>
         </Container>
       </div>
     </>
