@@ -13,7 +13,7 @@ const LocationPage = ({ state, dispatch }) => {
       <div>
         <Container>
           <ToolkitProvider
-            keyField="id"
+            keyField="location_id"
             data={state.locations}
             columns={[
               {

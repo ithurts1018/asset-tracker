@@ -13,7 +13,7 @@ const AssigneePage = ({ state, dispatch }) => {
       <div>
         <Container>
           <ToolkitProvider
-            keyField="id"
+            keyField="assignee_id"
             data={state.assignees}
             columns={[
               {

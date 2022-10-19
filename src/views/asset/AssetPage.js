@@ -13,7 +13,7 @@ const AssetPage = ({ state, dispatch }) => {
       <div>
         <Container>
           <ToolkitProvider
-            keyField="id"
+            keyField="asset_id"
             data={state.assets}
             columns={[
               { dataField: "asset_id", text: "Asset ID", searchable: true },
